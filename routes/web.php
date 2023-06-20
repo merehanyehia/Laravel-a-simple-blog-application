@@ -33,3 +33,7 @@ Route::post('/blogs/add', [App\Http\Controllers\BlogController::class, 'create']
 
 Route::delete('/blogs/delete/{id}', [App\Http\Controllers\BlogController::class, 'delete'])->name('deleteBlog')->middleware('auth');
 
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
