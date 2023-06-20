@@ -2,15 +2,18 @@
 
 @section('content')
 <div class="container">
-<div class="card">
+@foreach($blogs as $blog)
+<div class="card mb-5">
   <div class="card-header">
-    Menna Raafat
+    {{$blog->users->name}}
   </div>
   <div class="card-body">
-    <h5 class="card-title">Post title</h5>
-    <p class="card-text">Post Content</p>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    <h5 class="card-title">{{$blog->title}}</h5>
+    <p class="card-text">{{$blog->content}}</p>
+    <a  href="{{ route('blogDetail', $blog) }}" class="btn btn-primary">Details</a>
+
   </div>
 </div>
+@endforeach
 </div>
 @endsection
