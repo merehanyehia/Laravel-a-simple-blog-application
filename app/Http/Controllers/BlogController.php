@@ -20,7 +20,7 @@ class BlogController extends Controller
     }
 
 
-    public function blogDetail($id){
+    public function blogDetails($id){
         $blogs=Blog::find($id);
         return view('blogs.blogDetail',['blogs'=>$blogs]);
     }
@@ -31,13 +31,36 @@ class BlogController extends Controller
     }
 
     public function create(Request $request){
+        $request->validate([
+            'title' => 'required|min:3|max:25',
+            'content' => 'required|min:3|max:150'
+ 
+        ]);
         $blogData = array_merge($request ->all(),['user_id'=>Auth::id()]);
         Blog::create($blogData); 
         return redirect('blogs');
     }
 
+    public function edit(Blog $id){
+        $this->authorize('update',$id);
+        return view('blogs.editBlog',['blogs'=>$id]);
+    }
+
+    public function updateBlog(Request $request, Blog $id){
+        $request->validate([
+            'title' => 'required|min:3|max:25',
+            'content' => 'required|min:3|max:150'
+ 
+        ]);
+        $id->title=$request->title;
+        $id->content=$request->content;
+        if($id->save()){
+            return redirect()->route('blogs.details', ['id' => $id]);       
+         }
+    }
+
     public function delete($id){
-        // $this->authorize('delete',)
+        // $this->authorize('delete',$id);
         Blog::find($id)->delete();
         return redirect('blogs');
     }

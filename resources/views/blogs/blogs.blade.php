@@ -10,7 +10,7 @@
   <div class="card-body">
     <h5 class="card-title">{{$blog->title}}</h5>
     <p class="card-text">{{$blog->content}}</p>
-    <a  href="{{ route('blogDetail', $blog) }}" class="btn btn-primary">Details</a>
+    <a  href="{{ route('blogs.details', $blog) }}" class="btn btn-primary">Details</a>
 
   </div>
 </div>
