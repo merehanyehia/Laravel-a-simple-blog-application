@@ -19,12 +19,10 @@ class BlogController extends Controller
         return view('blogs.blogs',['blogs'=>$blogs]);
     }
 
-
     public function blogDetails($id){
         $blogs=Blog::find($id);
         return view('blogs.blogDetail',['blogs'=>$blogs]);
     }
-
 
     public function blogs(){
         return view('blogs.addBlog');
@@ -38,7 +36,7 @@ class BlogController extends Controller
         ]);
         $blogData = array_merge($request ->all(),['user_id'=>Auth::id()]);
         Blog::create($blogData); 
-        return redirect('blogs');
+        return redirect('blogs')->with('success','Blog is Added Sucessfully');
     }
 
     public function edit(Blog $id){
@@ -50,19 +48,17 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|min:3|max:25',
             'content' => 'required|min:3|max:150'
- 
         ]);
         $id->title=$request->title;
         $id->content=$request->content;
         if($id->save()){
-            return redirect()->route('blogs.details', ['id' => $id]);       
+            return redirect()->route('blogs.details', ['id' => $id])->with('success','Blog is Edited Sucessfully');       
          }
     }
 
     public function delete($id){
         // $this->authorize('delete',$id);
         Blog::find($id)->delete();
-        return redirect('blogs');
+        return redirect('blogs')->with('success','Blog is Deleted Sucessfully');
     }
-
 }

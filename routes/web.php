@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+// Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'view'])->name('blogs.all');
 
 Route::controller(App\Http\Controllers\BlogController::class,)->name('blogs.')->prefix('blogs')->middleware('auth')->group(function(){
 
