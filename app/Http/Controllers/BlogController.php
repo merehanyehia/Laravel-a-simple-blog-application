@@ -32,7 +32,6 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|min:3|max:25',
             'content' => 'required|min:3|max:150'
- 
         ]);
         $blogData = array_merge($request ->all(),['user_id'=>Auth::id()]);
         Blog::create($blogData); 
@@ -57,7 +56,6 @@ class BlogController extends Controller
     }
 
     public function delete($id){
-        // $this->authorize('delete',$id);
         Blog::find($id)->delete();
         return redirect('blogs')->with('success','Blog is Deleted Sucessfully');
     }

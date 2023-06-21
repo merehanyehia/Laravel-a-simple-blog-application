@@ -41,10 +41,6 @@
      {!! Form::close() !!}
     @endcan
 
-    <!-- {!! Form::open(['route' => ['blogs.delete',$blogs],'method' => 'delete']) !!}
-        {!! Form::submit('Delete',['class'=>'btn btn-danger m-3 px-5 ']);!!}
-    {!! Form::close() !!} -->
-
     </div>
   </div>
 </div>
