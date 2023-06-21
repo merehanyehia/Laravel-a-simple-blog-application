@@ -21,7 +21,7 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,  $id)
+    public function store(Request $request, $id)
     {
         $validated = $request->validate([
             'content' => 'required|max:30|string'
@@ -31,6 +31,7 @@ class CommentController extends Controller
         $comment ->content=$request->content;
         $comment ->user_id = Auth::id();
         $comment ->blog_id=$id;
+        // dd($comment);
         $comment->save();
         return back();
 

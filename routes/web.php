@@ -55,9 +55,9 @@ Route::controller(App\Http\Controllers\BlogController::class,)->name('blogs.')->
 
 
 
+Route::post('/blogs/comment/{id}',[App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 
-
-
+Route::get('/blogs/{id}/comments',[App\Http\Controllers\BlogController::class, 'viewComments'])->name('comments');
 
 Route::get('/blogs/comment/{comment}/updateForm',[App\Http\Controllers\CommentController::class, 'edit'])->name('comment.edit');
 Route::put('/blogs/comment/{id}/update',[App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
@@ -65,12 +65,10 @@ Route::put('/blogs/comment/{id}/update',[App\Http\Controllers\CommentController:
 
 
 
-Route::get('/blogs/{id}/comments',[App\Http\Controllers\BlogController::class, 'viewComments'])->name('comments');
 
 
 
 
-Route::post('/blogs/comment/{id}',[App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 
 
 

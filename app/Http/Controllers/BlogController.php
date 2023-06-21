@@ -26,9 +26,11 @@ class BlogController extends Controller
         return view('blogs.blogDetail',['blogs'=>$blogs]);
     }
 
-    public function viewComments($blogs){
+    public function viewComments($id){
         // dd($blogs);
-        $comments=Comment::find($blogs)->get();
+        // $comments=Comment::find($blogs)->get();
+        $comments = Comment::where('blog_id', $id)->get();
+
         // $comments = $blogs->comment;
         // dd($comments);
 
