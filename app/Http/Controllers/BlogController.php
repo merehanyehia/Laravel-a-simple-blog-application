@@ -27,7 +27,6 @@ class BlogController extends Controller
         return view('blogs.blogDetail',['blogs'=>$blogs]);
     }
 
-<<<<<<< HEAD
     public function viewComments($blogs){
         // dd($blogs);
 $comments=Comment::find($blogs)->get();
@@ -38,8 +37,6 @@ $comments=Comment::find($blogs)->get();
     }
 
 
-=======
->>>>>>> 3104662aefbf6fd29eedfc273e4037307c94c275
     public function blogs(){
         return view('blogs.addBlog');
     }
