@@ -52,7 +52,7 @@ class BlogController extends Controller
 
     public function edit(Blog $id){
         $this->authorize('update',$id);
-        return view('blogs.edit',['blogs'=>$id]);
+        return view('blogs.editBlog',['blogs'=>$id]);
     }
 
     public function updateBlog(Request $request, Blog $id){

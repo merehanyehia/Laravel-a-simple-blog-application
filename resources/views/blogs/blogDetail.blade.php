@@ -33,6 +33,14 @@
     </a>
     @endcan
 
+    @can('delete',$blogs)
+     {!! Form::open(['route' => ['blogs.delete', $blogs], 'method' => 'delete']) !!}
+      <button type="submit" class="btn btn-danger m-1">
+        <i class="fa fa-trash"></i>
+      </button>
+     {!! Form::close() !!}
+    @endcan
+
 
     <div>
   @if(session('success'))
@@ -56,13 +64,6 @@
       </ul>
     </div>
   @endif
-    @can('delete',$blogs)
-     {!! Form::open(['route' => ['blogs.delete', $blogs], 'method' => 'delete']) !!}
-      <button type="submit" class="btn btn-danger m-1">
-        <i class="fa fa-trash"></i>
-      </button>
-     {!! Form::close() !!}
-    @endcan
 
     </div>
   </div>
