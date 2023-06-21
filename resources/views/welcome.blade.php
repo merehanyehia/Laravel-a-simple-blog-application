@@ -27,12 +27,14 @@
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                         @endif
-                        @if (Route::has('blogs'))
-                            <a href="{{ route('blogs') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Blogs</a>
+                        @if (Route::has('addBlog'))
+                            <a href="{{ route('addBlog') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Add Post</a>
                         @endif
-                    @endauth
 
-                    <a href="#" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">All Posts</a>
+                    @endauth
+                     @if (Route::has('AllBlogs'))
+                            <a href="{{ route('AllBlogs') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">All Posts</a>
+                        @endif
                 </div>
             @endif
 <div>
