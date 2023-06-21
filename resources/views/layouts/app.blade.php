@@ -52,7 +52,7 @@
                             @endif
                         @else
                            <li class="nav-item">
-                             <a class="nav-link" href="{{ route('blogs.blogs')}}">My Blogs</a>
+                             <a class="nav-link" href="{{ route('blogs')}}">My Blogs</a>
                            </li>
                            <li class="nav-item">
                              <a class="nav-link" href="{{ route('blogs.all')}}">All Blogs</a>
@@ -74,7 +74,7 @@
                                     <a class="dropdown-item" href="{{ route('blogs') }}">
                                     {{ __('Your Posts') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('addBlog') }}">
+                                    <a class="dropdown-item" href="{{ route('blogs.add') }}">
                                     {{ __('Add Post') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

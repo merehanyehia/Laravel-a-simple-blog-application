@@ -23,14 +23,12 @@ class BlogController extends Controller
 
     public function blogDetails($id){
         $blogs=Blog::find($id);
-
         return view('blogs.blogDetail',['blogs'=>$blogs]);
     }
 
-<<<<<<< HEAD
     public function viewComments($blogs){
         // dd($blogs);
-$comments=Comment::find($blogs)->get();
+        $comments=Comment::find($blogs)->get();
         // $comments = $blogs->comment;
         // dd($comments);
 
@@ -38,8 +36,6 @@ $comments=Comment::find($blogs)->get();
     }
 
 
-=======
->>>>>>> 3104662aefbf6fd29eedfc273e4037307c94c275
     public function blogs(){
         return view('blogs.addBlog');
     }
@@ -56,7 +52,7 @@ $comments=Comment::find($blogs)->get();
 
     public function edit(Blog $id){
         $this->authorize('update',$id);
-        return view('blogs.editBlog',['blogs'=>$id]);
+        return view('blogs.edit',['blogs'=>$id]);
     }
 
     public function updateBlog(Request $request, Blog $id){

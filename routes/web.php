@@ -52,13 +52,10 @@ Route::controller(App\Http\Controllers\BlogController::class,)->name('blogs.')->
 
 
 
-Route::get('/blogs/new', [App\Http\Controllers\BlogController::class, 'blogs'])->name('addBlog')->middleware('auth');
-
-Route::post('/blogs/add', [App\Http\Controllers\BlogController::class, 'create'])->name('createBlog')->middleware('auth');
 
 
 
-Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'view'])->name('AllBlogs');
+
 
 
 
@@ -73,7 +70,6 @@ Route::get('/blogs/{id}/comments',[App\Http\Controllers\BlogController::class, '
 
 
 
-Route::get('/blogs/{id}', [App\Http\Controllers\BlogController::class, 'blogDetail'])->name('blogDetail')->middleware('auth');
 Route::post('/blogs/comment/{id}',[App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 
 
