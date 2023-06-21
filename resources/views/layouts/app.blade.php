@@ -71,12 +71,12 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('blogs.blogs') }}">
+                                    <!-- <a class="dropdown-item" href="{{ route('blogs.blogs') }}">
                                     {{ __('Your Posts') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('blogs.add') }}">
                                     {{ __('Add Post') }}
-                                    </a>
+                                    </a> -->
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

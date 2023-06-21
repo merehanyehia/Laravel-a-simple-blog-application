@@ -15,7 +15,7 @@ class BlogPolicy
         
     }
 
-    public function delete(User $user, Blog $blog)
+    public function delete(User $user, Blog $blog):bool
     {
         return $user->id === $blog->user_id;
     }

@@ -6,9 +6,13 @@ use App\Models\Blog;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 class BlogController extends Controller
 {
+    use AuthorizesRequests;
+
    
     public function view(){
         $blogs=Blog::all();
@@ -70,7 +74,10 @@ class BlogController extends Controller
     }
 
     public function delete($id){
-        Blog::find($id)->delete();
+        $blog = Blog::findOrFail($id);
+        $this->authorize('delete', $blog);
+        $blog->delete();
+        // Blog::find($id)->delete();
         return redirect('blogs')->with('success','Blog is Deleted Sucessfully');
     }
 }

@@ -38,7 +38,7 @@
                 </div>
             @endif
 <div>
-    <h1>welcome to our Blog </h1>
+    <h1>Hello to My Blog Application</h1>
 </div>
            
     </body>

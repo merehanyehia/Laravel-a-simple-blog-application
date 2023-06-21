@@ -51,8 +51,16 @@
   
 </div>
 
-<div>
-{!! Form::open(['route' => ['comment.store', $blogs->id], 'method' => 'post', 'class' => 'ms-5 mt-5']) !!}
+
+<!-- </div> -->
+
+
+</div>
+
+<div class="card mb-5">
+  <div class="card-body">
+
+  {!! Form::open(['route' => ['comment.store', $blogs->id], 'method' => 'post', 'class' => 'ms-5 mt-5']) !!}
 
 <div class="mb-3 ms-5">
 <strong> {!! Form::label('content', 'comment', ['class' => 'form-label'])!!}</strong>
@@ -69,7 +77,6 @@
 @endif
 
   </div>
-<!-- </div> -->
 <div class=" mt-5 pb-3  text-center">
 {!! Form::submit('Add Comment',['class' => 'btn btn-dark ps-5 pe-5']) !!}
 
@@ -80,14 +87,12 @@
 <div class=" mt-5 pb-3  text-center">
 
 
-<a href="{{ route('comments',$blogs->id) }}" class="btn btn-primary ps-5 pe-5">View Comments</a>
+<a href="{{ route('blogs.comments',$blogs->id) }}" class="btn btn-primary ps-5 pe-5">View Comments</a>
 </div>
 <!-- <div> -->
 </div>
 
 </div>
-
-
 </div>
 @endsection
 

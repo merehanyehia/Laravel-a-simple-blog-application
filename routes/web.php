@@ -27,12 +27,12 @@ Route::controller(App\Http\Controllers\BlogController::class,)->name('blogs.')->
 
     Route::get('/new','blogs')->name('add');
     Route::post('/add', 'create')->name('create');
-    // Route::get('/all', 'view')->name('all');
     Route::get('', 'index')->name('blogs');
     Route::get('/{id}', 'blogDetails')->name('details');
     Route::put('/update/{id}', 'updateBlog')->name('update');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::delete('/delete/{id}', 'delete')->name('delete');
+    Route::get('/{id}/comments', 'viewComments')->name('comments');
 
 });
 
@@ -57,7 +57,7 @@ Route::controller(App\Http\Controllers\BlogController::class,)->name('blogs.')->
 
 Route::post('/blogs/comment/{id}',[App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 
-Route::get('/blogs/{id}/comments',[App\Http\Controllers\BlogController::class, 'viewComments'])->name('comments');
+
 
 Route::get('/blogs/comment/{comment}/updateForm',[App\Http\Controllers\CommentController::class, 'edit'])->name('comment.edit');
 Route::put('/blogs/comment/{id}/update',[App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
