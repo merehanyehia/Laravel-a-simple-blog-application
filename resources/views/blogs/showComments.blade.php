@@ -7,14 +7,20 @@
     <ul>
         @foreach ($comments as $comment)
             <li>{{ $comment->content }}</li>
-            <a href="{{ route('comment.edit',$comment->id) }}" class="btn btn-primary">Update Comment</a>
-            <form action="{{route('comment.delete',$comment->id)}}" method="post">
+            @can('update_comment',$comment)
+
+            <a href="{{ route('comments.edit',$comment->id) }}" class="btn btn-primary">Update Comment</a>
+            @endcan
+            @can('delete_comment',$comment)
+
+            <form action="{{route('comments.delete',$comment->id)}}" method="post">
   @method('delete')
   @csrf
       <input type="submit" value="Delete Comment" class="btn btn-danger">
       </form>
-        @endforeach
+      @endcan
 
+        @endforeach
     </ul>
     </div>
     @endsection

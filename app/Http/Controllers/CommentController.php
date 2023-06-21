@@ -8,15 +8,11 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Gate;
+
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -24,7 +20,7 @@ class CommentController extends Controller
     public function store(Request $request, $id)
     {
         $validated = $request->validate([
-            'content' => 'required|max:30|string'
+            'content' => 'required|max:30'
         ]);
         $comment = new Comment();
 
@@ -53,10 +49,10 @@ class CommentController extends Controller
     public function update(Request $request,  $id)
     {
         $validated = $request->validate([
-            'content' => 'required|max:70|string'
+            'content' => 'required|max:70'
         ]);
         $comment = Comment::findOrFail($id);
-
+        Gate::authorize('update_comment',$comment);
         $comment ->content=$request->content;
         $comment ->user_id = Auth::id();
         $comment ->blog_id;

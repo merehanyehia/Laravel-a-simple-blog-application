@@ -5,8 +5,11 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\Blog;
+use App\Models\Comment;
+use App\Models\User;
 use App\Policies\BlogPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,5 +28,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
+        Gate::define('update-comment',function(User $user,Comment $comment){
+          return $user->id == $comment->user_id;
+        });
+
+        Gate::define('delete-comment',function(User $user,Comment $comment){
+            return $user->id == $comment->user_id;
+          });
     }
 }

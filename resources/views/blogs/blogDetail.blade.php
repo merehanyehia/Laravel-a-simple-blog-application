@@ -40,19 +40,24 @@
     </div>
 
     <!-- <div> -->
-  <!-- @if(session('success'))
+  @if(session('success'))
 <div class="alert alert-success w-50">
 
    {{session('success')}}
+   <script>
+        setTimeout(function() {
+            $('div.alert').remove();
+        }, 1000);
+    </script>
     </div>
-    @endif -->
+    @endif
    
   
   
 </div>
 
 <div>
-{!! Form::open(['route' => ['comment.store', $blogs->id], 'method' => 'post', 'class' => 'ms-5 mt-5']) !!}
+{!! Form::open(['route' => ['comments.store', $blogs->id], 'method' => 'post', 'class' => 'ms-5 mt-5']) !!}
 
 <div class="mb-3 ms-5">
 <strong> {!! Form::label('content', 'comment', ['class' => 'form-label'])!!}</strong>
@@ -80,7 +85,7 @@
 <div class=" mt-5 pb-3  text-center">
 
 
-<a href="{{ route('comments',$blogs->id) }}" class="btn btn-primary ps-5 pe-5">View Comments</a>
+<a href="{{ route('blogs.comments',$blogs->id) }}" class="btn btn-primary ps-5 pe-5">View Comments</a>
 </div>
 <!-- <div> -->
 </div>

@@ -7,9 +7,14 @@
 <div class="alert alert-success w-50">
 
    {{session('success')}}
+   <script>
+        setTimeout(function() {
+            $('div.alert').remove();
+        }, 1000);
+    </script>
     </div>
     @endif
-    {!!Form::model($comment,['route' => ['comment.update', $comment->id],'method' => 'put','class'=>'ms-5 mt-5']) !!}
+    {!!Form::model($comment,['route' => ['comments.update', $comment->id],'method' => 'put','class'=>'ms-5 mt-5']) !!}
       <div class="mb-3 ms-5">
   <strong> {!! Form::label('content', 'comment', ['class' => 'form-label'])!!}</strong>
 
