@@ -12,6 +12,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -49,6 +51,15 @@
                                 </li>
                             @endif
                         @else
+                           <li class="nav-item">
+                             <a class="nav-link" href="{{ route('blogs.blogs')}}">My Blogs</a>
+                           </li>
+                           <li class="nav-item">
+                             <a class="nav-link" href="{{ route('blogs.all')}}">All Blogs</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="{{ route('blogs.add')}}">New Blog</a>
+                           </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -81,5 +92,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </body>
 </html>
