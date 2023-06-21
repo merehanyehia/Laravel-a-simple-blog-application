@@ -25,6 +25,7 @@
     <a  href="{{ route('blogs.details', $blog) }}" class="btn btn-primary px-5">Blog Details</a>
 
   </div>
+  
 </div>
 @endforeach
 </div>

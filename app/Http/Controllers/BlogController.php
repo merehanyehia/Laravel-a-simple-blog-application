@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,6 +12,7 @@ class BlogController extends Controller
    
     public function view(){
         $blogs=Blog::all();
+
         return view('blogs.blogs',['blogs'=>$blogs]);
     }
 
@@ -21,9 +23,23 @@ class BlogController extends Controller
 
     public function blogDetails($id){
         $blogs=Blog::find($id);
+
         return view('blogs.blogDetail',['blogs'=>$blogs]);
     }
 
+<<<<<<< HEAD
+    public function viewComments($blogs){
+        // dd($blogs);
+$comments=Comment::find($blogs)->get();
+        // $comments = $blogs->comment;
+        // dd($comments);
+
+        return view('blogs.showComments',['comments'=>$comments]);
+    }
+
+
+=======
+>>>>>>> 3104662aefbf6fd29eedfc273e4037307c94c275
     public function blogs(){
         return view('blogs.addBlog');
     }
