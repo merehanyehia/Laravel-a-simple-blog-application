@@ -76,3 +76,5 @@ npm run dev
 installed packages:
 
 composer require laravel/ui
+composer require laravelcollective/html
+

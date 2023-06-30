@@ -31,13 +31,7 @@ class BlogController extends Controller
     }
 
     public function viewComments($id){
-        // dd($blogs);
-        // $comments=Comment::find($blogs)->get();
         $comments = Comment::where('blog_id', $id)->get();
-
-        // $comments = $blogs->comment;
-        // dd($comments);
-
         return view('blogs.showComments',['comments'=>$comments]);
     }
 
@@ -73,11 +67,9 @@ class BlogController extends Controller
          }
     }
 
-    public function delete($id){
-        $blog = Blog::findOrFail($id);
-        $this->authorize('delete', $blog);
-        $blog->delete();
-        // Blog::find($id)->delete();
+    public function destroy($id){
+        $blogs = Blog::findOrFail($id);
+        $blogs->delete();
         return redirect('blogs')->with('success','Blog is Deleted Sucessfully');
     }
 }

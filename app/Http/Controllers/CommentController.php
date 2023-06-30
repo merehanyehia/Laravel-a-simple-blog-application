@@ -7,33 +7,25 @@ use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\Authenticatable;
+
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, Comment $comment ,$id)
     {
         $validated = $request->validate([
-            'content' => 'required|max:30|string'
+            'content' => 'required|min:3|max:90'
         ]);
-        $comment = new Comment();
 
         $comment ->content=$request->content;
         $comment ->user_id = Auth::id();
         $comment ->blog_id=$id;
-        // dd($comment);
         $comment->save();
-        return back();
+        return back()->with('success','Comment is Added successfully');
 
     }
 
@@ -44,6 +36,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
+        $this->authorize('update',$comment);
         return view('blogs.updateComment',['comment'=>$comment]);
     }
 
@@ -53,18 +46,18 @@ class CommentController extends Controller
     public function update(Request $request,  $id)
     {
         $validated = $request->validate([
-            'content' => 'required|max:70|string'
+            'content' => 'required|min:3|max:90'
         ]);
+
         $comment = Comment::findOrFail($id);
+        $this->authorize('update',$comment);
 
         $comment ->content=$request->content;
         $comment ->user_id = Auth::id();
         $comment ->blog_id;
-        // dd($comment);
-        if($comment->save())
-        session()->flash('success','Comment updated successfully');
-        return back();
-
+        if($comment->save()){
+            return redirect()->route('blogs.comments',['id' => $comment->blog_id])->with('success','Comment updated successfully');
+        }
     }
 
     /**
@@ -72,9 +65,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        if (auth()->user()->is($comment->user)) {
-            $comment->delete();
-        }
-        return back();
+        $this->authorize('delete', $comment);
+        $comment->delete();
+        return back()->with('success','Comment is Deleted Successfully');
     }
 }

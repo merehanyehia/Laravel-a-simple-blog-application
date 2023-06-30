@@ -37,59 +37,31 @@
       </button>
      {!! Form::close() !!}
     @endcan
+    <a href="{{ route('blogs.comments',$blogs->id) }}" class="btn btn-primary m-1">View Comments</a>
     </div>
 
-    <!-- <div> -->
-  <!-- @if(session('success'))
-<div class="alert alert-success w-50">
-
-   {{session('success')}}
-    </div>
-    @endif -->
-   
-  
-  
 </div>
-
-
-<!-- </div> -->
-
 
 </div>
 
 <div class="card mb-5">
   <div class="card-body">
 
-  {!! Form::open(['route' => ['comment.store', $blogs->id], 'method' => 'post', 'class' => 'ms-5 mt-5']) !!}
+  {!! Form::open(['route' => ['comments.store', $blogs->id], 'method' => 'post', 'class' => 'ms-5 mt-5']) !!}
 
-<div class="mb-3 ms-5">
-<strong> {!! Form::label('content', 'comment', ['class' => 'form-label'])!!}</strong>
-  <input type="text" class="form-control w-50 @error('content') is-invalid @enderror" id="content" name="content">
-
-  @if($errors->has('content'))
-  <div class="alert alert-danger w-50">
-    <ul>
-      @foreach($errors->get('content') as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
-
-  </div>
-<div class=" mt-5 pb-3  text-center">
-{!! Form::submit('Add Comment',['class' => 'btn btn-dark ps-5 pe-5']) !!}
-
+<div class="mb-3">
+     <label for="exampleFormControlInput1" class="form-label">Comment</label>
+     {!! Form::textarea('content', null, ['class' => $errors->has('content') ? 'form-control is-invalid' : 'form-control']) !!}
+     @error('content')
+      <div class="invalid-feedback">{{ $message }}</div>
+     @enderror
 </div>
 
+<div class=" mt-5 pb-3  text-center">
+{!! Form::submit('Add Comment',['class' => 'btn btn-success ps-5 pe-5']) !!}
 
+</div>
 {!!Form::close() !!}
-<div class=" mt-5 pb-3  text-center">
-
-
-<a href="{{ route('blogs.comments',$blogs->id) }}" class="btn btn-primary ps-5 pe-5">View Comments</a>
-</div>
-<!-- <div> -->
 </div>
 
 </div>

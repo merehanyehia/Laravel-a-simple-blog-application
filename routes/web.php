@@ -29,10 +29,21 @@ Route::controller(App\Http\Controllers\BlogController::class,)->name('blogs.')->
     Route::post('/add', 'create')->name('create');
     Route::get('', 'index')->name('blogs');
     Route::get('/{id}', 'blogDetails')->name('details');
+    Route::get('/{id}/comments','viewComments')->name('comments');
     Route::put('/update/{id}', 'updateBlog')->name('update');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::delete('/delete/{id}', 'delete')->name('delete');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
     Route::get('/{id}/comments', 'viewComments')->name('comments');
+
+});
+
+
+Route::controller(App\Http\Controllers\CommentController::class,)->name('comments')->prefix('comments')->middleware('auth')->group(function(){
+
+    Route::post('/comment/{id}','store')->name('.store');
+    Route::get('/comment/{comment}/updateForm', 'edit')->name('.edit');
+    Route::put('/comment/{id}/update', 'update')->name('.update');
+    Route::delete('/{comment}/comments', 'destroy')->name('.delete');
 
 });
 
@@ -51,16 +62,12 @@ Route::controller(App\Http\Controllers\BlogController::class,)->name('blogs.')->
 
 
 
+// Route::post('/blogs/comment/{id}',[App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 
 
 
-
-Route::post('/blogs/comment/{id}',[App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
-
-
-
-Route::get('/blogs/comment/{comment}/updateForm',[App\Http\Controllers\CommentController::class, 'edit'])->name('comment.edit');
-Route::put('/blogs/comment/{id}/update',[App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
+// Route::get('/blogs/comment/{comment}/updateForm',[App\Http\Controllers\CommentController::class, 'edit'])->name('comment.edit');
+// Route::put('/blogs/comment/{id}/update',[App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
 
 
 
@@ -86,6 +93,9 @@ Route::put('/blogs/comment/{id}/update',[App\Http\Controllers\CommentController:
 
 
 Route::delete('/blogs/{comment}/comments', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comment.delete')->middleware('auth');
+// Route::get('/blogs/comment/{comment}/updateForm',[App\Http\Controllers\CommentController::class, 'edit'])->name('comment.edit');
+// Route::put('/blogs/comment/{id}/update',[App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
+// Route::delete('/blogs/{comment}/comments', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comment.delete')->middleware('auth');
 
 
 
